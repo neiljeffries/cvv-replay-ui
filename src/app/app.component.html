@@ -1,20 +1,140 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div class="left">{{title}}</div>
+<div class="left" style="clear:left">
+
+<div class="sWrap left">
+
+<div class="myLbl" style="color:red; font-size:10px; height:12px; width:80px; margin:0 0 2px 2px">{{validationMsg}}</div>
+
+<div class="myContainer left">
+	<div class="myItem">
+		<div class="myLbl">Gateway</div>
+		<input #gtwyInput placeholder="ABC" (keydown)="alphaOnly($event)" [formControl]="gtwyControl" class="myInput" maxLength="3" style="width: 40px; text-transform: uppercase" >
+  </div>
+  <div class="myItem" style="width:121px">
+    <div class="myLbl">Date</div>
+      <input #dateInput [matDatepicker]="picker" (keyup)="validateDate()" placeholder="MM/DD/YYYY" [formControl]="todayDate" maxlength="10" class="myInput" style="width: 85px;" >
+    <mat-icon (click)="picker.open()" class="timeIcon">date_range</mat-icon>
+    <mat-datepicker #picker></mat-datepicker>
+  </div>
+
+ <div class="myItem">
+  <div class="myItem">
+    <div class="myLbl">Hours</div>
+    <input maxlength="2" (keydown)="numberOnly($event)" #hoursInput placeholder="HH" [(ngModel)]="hoursValue" (blur)="fix()" class="myInput" style="width: 30px;">
+  </div>
+  <div class="myItem" style="width:66px">
+    <div class="myLbl">Minutes</div>
+    <input maxlength="2" (keydown)="numberOnly($event)" #timeInput placeholder="MM" [(ngModel)]="minsValue" (blur)="fix()" class="myInput" style="width: 30px;">
+    <mat-icon matSuffix  class="timeIcon" [matMenuTriggerFor]="menu2">access_time</mat-icon>
+  </div>
+ </div>
+
+<div class="myItem">
+
+  <button mat-mini-fab color="primary" style="margin-top:6px" (click)="convertToGtwyTime()">Go!</button>
+</div>
+</div>
+<div style="float:left; clear:left; margin-top:20px; font-size:10px">
+zulu<br>
+{{this.isoString}}<br><br>
+local<br>
+{{this.localString}}<br><br>
+local mil<br>
+ {{this.localMilString}}
+</div>
+
+
+
+<mat-menu class="timeMenu" #menu2="matMenu" overlapTrigger="false">
+  <div class="menuTimeDisplay">
+    {{sliderHours.value | number:'2.0'}} : {{sliderMins.value | number:'2.0'}}
+  </div>
+  <div class="sliderOuterWrap" (click)="$event.stopPropagation();">
+        <div class="sliderHoursWrap">
+      <div class="sliderHoursLbl">Hours</div>
+        <mat-slider #sliderHours [max]="23" [min]="00" (change)="hoursSliderChanged($event.value)" [thumbLabel]="true" [(ngModel)]="hoursValue"
+              [vertical]="false">
+        </mat-slider>
+    </div>
+    <div class="sliderMinsWrap">
+      <div class="sliderMinsLbl">Minutes</div>
+        <mat-slider #sliderMins [max]="59" [min]="00" (change)="minsSliderChanged($event.value)" [thumbLabel]="true" [(ngModel)]="minsValue"
+              [vertical]="false">
+        </mat-slider>
+    </div>
+
+  </div>
+</mat-menu>
+
+</div>
+
+<div class="sWrap1 left">
+<div class="myLbl" style="color:red; font-size:10px; height:12px; width:80px; margin:0 0 2px 2px">{{validationMsg1}}</div>
+
+<div class="myContainer left">
+	<div class="myItem">
+		<div class="myLbl">Gateway</div>
+		<input #gtwyInput1 placeholder="ABC" (keydown)="alphaOnly($event)" [formControl]="gtwyControl1" class="myInput" maxLength="3" style="width: 40px; text-transform: uppercase" >
+  </div>
+  <div class="myItem" style="width:121px">
+    <div class="myLbl">Date</div>
+      <input #dateInput1 [matDatepicker]="picker1" (keyup)="validateDate1()" placeholder="MM/DD/YYYY" [formControl]="todayDate1" maxlength="10" class="myInput" style="width: 85px;" >
+    <mat-icon (click)="picker1.open()" class="timeIcon">date_range</mat-icon>
+    <mat-datepicker #picker1></mat-datepicker>
+  </div>
+
+ <div class="myItem">
+  <div class="myItem">
+    <div class="myLbl">Hours</div>
+    <input maxlength="2" (keydown)="numberOnly($event)" #hoursInput1 placeholder="HH" [(ngModel)]="hoursValue1" (blur)="fix1()" class="myInput" style="width: 30px;">
+  </div>
+  <div class="myItem" style="width:66px">
+    <div class="myLbl">Minutes</div>
+    <input maxlength="2" (keydown)="numberOnly($event)" #timeInput1 placeholder="MM" [(ngModel)]="minsValue1" (blur)="fix1()" class="myInput" style="width: 30px;">
+    <mat-icon matSuffix  class="timeIcon" [matMenuTriggerFor]="menu3">access_time</mat-icon>
+  </div>
+ </div>
+
+<div class="myItem">
+
+  <button mat-mini-fab color="primary" style="margin-top:6px" (click)="convertToGtwyTime1()">Go!</button>
+</div>
+</div>
+<div style="float:left; clear:left; margin-top:20px; font-size:10px">
+zulu<br>
+{{this.isoString1}}<br><br>
+local<br>
+{{this.localString1}}<br><br>
+local mil<br>
+ {{this.localMilString1}}
+</div>
+
+
+<mat-menu class="timeMenu" #menu3="matMenu" overlapTrigger="false">
+  <div class="menuTimeDisplay">
+    {{sliderHours1.value | number:'2.0'}} : {{sliderMins1.value | number:'2.0'}}
+  </div>
+  <div class="sliderOuterWrap" (click)="$event.stopPropagation();">
+        <div class="sliderHoursWrap">
+      <div class="sliderHoursLbl">Hours</div>
+        <mat-slider #sliderHours1 [max]="23" [min]="00" (change)="hoursSliderChanged1($event.value)" [thumbLabel]="true" [(ngModel)]="hoursValue1"
+              [vertical]="false">
+        </mat-slider>
+    </div>
+    <div class="sliderMinsWrap">
+      <div class="sliderMinsLbl">Minutes</div>
+        <mat-slider #sliderMins1 [max]="59" [min]="00" (change)="minsSliderChanged1($event.value)" [thumbLabel]="true" [(ngModel)]="minsValue1"
+              [vertical]="false">
+        </mat-slider>
+    </div>
+
+  </div>
+</mat-menu>
+
+</div>
+
+
+</div>
+<button mat-button class="left">Run</button>
