@@ -8,10 +8,10 @@
 <div class="myLbl" style="color:red; font-size:10px; height:12px; width:80px; margin:0 0 2px 2px">{{validationMsg}}</div>
 
 <div class="myContainer left">
-	<div class="myItem">
+	<!-- <div class="myItem">
 		<div class="myLbl">Gateway</div>
 		<input #gtwyInput placeholder="ABC" (keydown)="alphaOnly($event)" [formControl]="gtwyControl" class="myInput" maxLength="3" style="width: 40px; text-transform: uppercase" >
-  </div>
+  </div> -->
   <div class="myItem" style="width:121px">
     <div class="myLbl">Date</div>
       <input #dateInput [matDatepicker]="picker" (keyup)="validateDate()" placeholder="MM/DD/YYYY" [formControl]="todayDate" maxlength="10" class="myInput" style="width: 85px;" >
@@ -31,18 +31,15 @@
   </div>
  </div>
 
-<div class="myItem">
+<!-- <div class="myItem">
 
   <button mat-mini-fab color="primary" style="margin-top:6px" (click)="convertToGtwyTime()">Go!</button>
-</div>
+</div> -->
 </div>
 <div style="float:left; clear:left; margin-top:20px; font-size:10px">
-zulu<br>
-{{this.isoString}}<br><br>
-local<br>
-{{this.localString}}<br><br>
-local mil<br>
- {{this.localMilString}}
+zulu: {{this.isoString}}<br>
+local: {{this.localString}}<br>
+local mil: {{this.localMilString}}
 </div>
 
 
@@ -74,10 +71,10 @@ local mil<br>
 <div class="myLbl" style="color:red; font-size:10px; height:12px; width:80px; margin:0 0 2px 2px">{{validationMsg1}}</div>
 
 <div class="myContainer left">
-	<div class="myItem">
+	<!-- <div class="myItem">
 		<div class="myLbl">Gateway</div>
 		<input #gtwyInput1 placeholder="ABC" (keydown)="alphaOnly($event)" [formControl]="gtwyControl1" class="myInput" maxLength="3" style="width: 40px; text-transform: uppercase" >
-  </div>
+  </div> -->
   <div class="myItem" style="width:121px">
     <div class="myLbl">Date</div>
       <input #dateInput1 [matDatepicker]="picker1" (keyup)="validateDate1()" placeholder="MM/DD/YYYY" [formControl]="todayDate1" maxlength="10" class="myInput" style="width: 85px;" >
@@ -97,18 +94,15 @@ local mil<br>
   </div>
  </div>
 
-<div class="myItem">
+<!-- <div class="myItem">
 
   <button mat-mini-fab color="primary" style="margin-top:6px" (click)="convertToGtwyTime1()">Go!</button>
-</div>
+</div> -->
 </div>
 <div style="float:left; clear:left; margin-top:20px; font-size:10px">
-zulu<br>
-{{this.isoString1}}<br><br>
-local<br>
-{{this.localString1}}<br><br>
-local mil<br>
- {{this.localMilString1}}
+zulu: {{this.isoString1}}<br>
+local: {{this.localString1}}<br>
+local mil: {{this.localMilString1}}
 </div>
 
 
@@ -137,4 +131,4 @@ local mil<br>
 
 
 </div>
-<button mat-button class="left">Run</button>
+<button mat-button class="left" (click)="run()">Run</button>

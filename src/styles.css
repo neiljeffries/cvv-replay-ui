@@ -36,8 +36,8 @@ body {
   }
 
   .myInput{
-    border: solid 2px #ccc;
-    border-radius: 6px;
+    border: solid 1px #ddd;
+    border-radius: 2px;
     font-family: sans-serif;
     padding:4px;
     text-align: center;
@@ -64,7 +64,7 @@ body {
 
   .myContainer{
     margin:0px;
-    border: solid 2px #CCC;
+    border: solid 1px #CCC;
     float:left;
     border-radius:6px;
     padding:4px;
@@ -73,7 +73,7 @@ body {
 
   /*dark mode*/
   .darkmode .myInput{
-    border: solid 2px #777;
+    border: solid 1px #777;
     background-color:#222;
     color: #ddd;
     font-weight:300;
@@ -85,7 +85,7 @@ body {
   }
 
   .darkmode.myContainer{
-    border: solid 2px #444;
+    border: solid 1px #444;
     background-color:#222;
   }
 

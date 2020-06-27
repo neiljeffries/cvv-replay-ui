@@ -50,6 +50,7 @@ export class AppComponent {
     return this.decimalPipe.transform(sliderValue, '2.0');
   }
 
+
   public fix(): void {
     let h = this.hoursInput.nativeElement.value;
     let t = this.timeInput.nativeElement.value;
@@ -61,6 +62,19 @@ export class AppComponent {
     }
     this.hoursValue = this.fixLeadingZero(h);
     this.minsValue = this.fixLeadingZero(t);
+  }
+
+  public fix1(): void {
+    let h = this.hoursInput1.nativeElement.value;
+    let t = this.timeInput1.nativeElement.value;
+    if (h === '' || isNaN(h) || h > 23 || h < 0) {
+      h = '00';
+    }
+    if (t === '' || isNaN(t) || t > 59 || t < 0) {
+      t = '00';
+    }
+    this.hoursValue1 = this.fixLeadingZero(h);
+    this.minsValue1 = this.fixLeadingZero(t);
   }
 
   private isValidDate(date: Date): boolean {
@@ -165,18 +179,22 @@ export class AppComponent {
     )[0];
   }
 
-  public convertToGtwyTime(): void {
+//   public convertToGtwyTime(): void {
+//     this.validationMsg = '';
+//     this.makeDateFromInputs();
+//  //   this.gtwyInfo = this.getGatewayInfo(this.gtwyInput.nativeElement.value);
+//     console.log(this.gtwyInfo);
+//     // TODO pass offsets from gtwyInfo to function that will return time at gtwy
+//     // Display time at gtwy
+//   }
+  public run(): void {
     this.validationMsg = '';
     this.makeDateFromInputs();
-    this.gtwyInfo = this.getGatewayInfo(this.gtwyInput.nativeElement.value);
+ //   this.gtwyInfo = this.getGatewayInfo(this.gtwyInput.nativeElement.value);
     console.log(this.gtwyInfo);
-    // TODO pass offsets from gtwyInfo to function that will return time at gtwy
-    // Display time at gtwy
-  }
-  public convertToGtwyTime1(): void {
     this.validationMsg1 = '';
     this.makeDateFromInputs1();
-    this.gtwyInfo1 = this.getGatewayInfo(this.gtwyInput1.nativeElement.value);
+ //   this.gtwyInfo1 = this.getGatewayInfo(this.gtwyInput1.nativeElement.value);
     console.log(this.gtwyInfo1);
     // TODO pass offsets from gtwyInfo to function that will return time at gtwy
     // Display time at gtwy
@@ -186,8 +204,9 @@ export class AppComponent {
     const inputDate = this.dateInput.nativeElement.value.split('/');
     const date = new Date(inputDate[2], inputDate[0] - 1, inputDate[1]);
     if (
-      this.isValidDate(date) &&
-      this.isValidGateway(this.gtwyInput.nativeElement.value)
+      this.isValidDate(date)
+      //  &&
+      // this.isValidGateway(this.gtwyInput.nativeElement.value)
     ) {
       date.setHours(
         this.hoursInput.nativeElement.value,
@@ -204,8 +223,9 @@ export class AppComponent {
     const inputDate = this.dateInput1.nativeElement.value.split('/');
     const date = new Date(inputDate[2], inputDate[0] - 1, inputDate[1]);
     if (
-      this.isValidDate(date) &&
-      this.isValidGateway(this.gtwyInput1.nativeElement.value)
+      this.isValidDate(date)
+      // &&
+      // this.isValidGateway(this.gtwyInput1.nativeElement.value)
     ) {
       date.setHours(
         this.hoursInput1.nativeElement.value,
